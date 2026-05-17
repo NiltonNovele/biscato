@@ -1,0 +1,228 @@
+.register {
+  min-height: calc(100vh - 100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f1fdf7 0%, #ffffff 55%, #f7f7f7 100%);
+  padding: 70px 20px;
+
+  form {
+    width: 82%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 45px;
+    display: flex;
+    gap: 55px;
+    background-color: #ffffff;
+    border: 1px solid #e4e5e7;
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+
+    .left,
+    .right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .form-header {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 8px;
+
+      span {
+        color: #1dbf73;
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      h1 {
+        color: #404145;
+        font-size: 32px;
+        line-height: 40px;
+        font-weight: 700;
+      }
+
+      p {
+        color: #62646a;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 500;
+      }
+    }
+
+    .login-link {
+      color: #62646a;
+      font-size: 15px;
+      line-height: 24px;
+      text-align: right;
+      margin-bottom: 6px;
+
+      a {
+        color: #1dbf73;
+        font-weight: 700;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .seller-card {
+      background-color: #f1fdf7;
+      border: 1px solid rgba(29, 191, 115, 0.22);
+      border-radius: 14px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 4px;
+
+      h1 {
+        color: #404145;
+        font-size: 24px;
+        line-height: 32px;
+        font-weight: 700;
+      }
+
+      p {
+        color: #62646a;
+        font-size: 15px;
+        line-height: 24px;
+        font-weight: 500;
+      }
+    }
+
+    label {
+      color: #404145;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    input,
+    textarea {
+      padding: 16px 18px;
+      border: 1px solid #d8d8d8;
+      border-radius: 10px;
+      outline: none;
+      color: #404145;
+      font-size: 15px;
+      transition: 0.3s ease;
+      background-color: #ffffff;
+
+      &::placeholder {
+        color: #95979d;
+      }
+
+      &:focus {
+        border-color: #1dbf73;
+        box-shadow: 0 0 0 3px rgba(29, 191, 115, 0.12);
+      }
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    button {
+      border: none;
+      padding: 16px;
+      color: white;
+      font-weight: 700;
+      font-size: 17px;
+      background-color: #1dbf73;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: 0.3s ease;
+      margin-top: 6px;
+
+      &:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+      }
+
+      &:disabled {
+        background-color: #95979d;
+        color: #fff;
+        cursor: not-allowed;
+        transform: none;
+        opacity: 1;
+      }
+    }
+
+    .toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 5px;
+
+      .switch {
+        position: relative;
+        display: inline-block;
+        min-width: 50px;
+        width: 50px;
+        height: 26px;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #c5c6c9;
+        transition: 0.4s;
+        border-radius: 26px;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+
+      input:checked + .slider {
+        background-color: #1dbf73;
+      }
+
+      input:focus + .slider {
+        box-shadow: 0 0 1px #1dbf73;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(24px);
+      }
+    }
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      flex-direction: column;
+      gap: 35px;
+      padding: 35px 24px;
+
+      .login-link {
+        text-align: left;
+      }
+    }
+  }
+}

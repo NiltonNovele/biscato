@@ -1,0 +1,168 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    color: #74767e;
+    background-color: #fff;
+    margin: 0;
+    padding: 60px 0 25px;
+    border-top: 1px solid #e4e5e7;
+
+    img {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 1300px;
+        margin: auto;
+
+        .top {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 35px;
+            padding-bottom: 45px;
+
+            .item {
+                display: flex;
+                flex-direction: column;
+                gap: 14px;
+
+                h1 {
+                    font-size: 16px;
+                    color: #404145;
+                    font-weight: 700;
+                    margin-bottom: 6px;
+                }
+
+                span,
+                a {
+                    font-size: 15px;
+                    font-weight: 400;
+                    color: #74767e;
+                    text-decoration: none;
+                    line-height: 22px;
+                    transition: 0.3s ease;
+                }
+
+                a:hover,
+                span:hover {
+                    color: var(--green-color);
+                }
+
+                &.contact {
+                    a {
+                        word-break: break-word;
+                    }
+                }
+            }
+
+            @media screen and (max-width: 1100px) {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            @media screen and (max-width: 700px) {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 28px 22px;
+            }
+
+            @media screen and (max-width: 480px) {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        hr {
+            width: 100%;
+            border: none;
+            border-top: 1px solid #e4e5e7;
+        }
+
+        .bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            padding: 24px 0 0;
+            
+            .left {
+                display: flex;
+                align-items: center;
+                gap: 18px;
+
+                h2 {
+                    color: #404145;
+                    font-size: 24px;
+                    font-weight: 700;
+                    white-space: nowrap;
+                }
+                
+                span {
+                    font-size: 13px;
+                    line-height: 20px;
+                    color: #74767e;
+                }
+            }
+
+            .right {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 22px;
+
+                .social {
+                    display: flex;
+                    align-items: center;
+                    gap: 14px;
+
+                    a {
+                        width: 38px;
+                        height: 38px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-color: #f5f5f5;
+                        transition: 0.3s ease;
+
+                        &:hover {
+                            background-color: #f1fdf7;
+                            transform: translateY(-2px);
+                        }
+                    }
+                }
+
+                .link {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    font-size: 14px;
+                    color: #74767e;
+                    white-space: nowrap;
+                }
+            }
+
+            @media screen and (max-width: 900px) {
+                flex-direction: column;
+                align-items: flex-start;
+
+                .right {
+                    justify-content: flex-start;
+                }
+            }
+
+            @media screen and (max-width: 560px) {
+                .left {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 8px;
+                }
+
+                .right {
+                    gap: 16px;
+                }
+            }
+        }
+    }
+}
