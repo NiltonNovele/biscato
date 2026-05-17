@@ -86,13 +86,13 @@ function Home() {
             </p>
           </div>
 
-          <div className="item">
+          {/* <div className="item">
             <video
               poster="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80"
               src="./img/video.mp4"
               controls
             />
-          </div>
+          </div> */}
         </div>
       </div>
 

@@ -10,11 +10,11 @@ const Message = () => {
 
   const queryClient = useQueryClient();
 
-  const { isLoading, error, data } = useQuery({
-    queryKey: ["messages"],
+  const { isLoading, error, data = [] } = useQuery({
+    queryKey: ["messages", id],
     queryFn: () =>
       newRequest.get(`/messages/${id}`).then((res) => {
-        return res.data;
+        return res.data || [];
       }),
   });
 
@@ -23,46 +23,91 @@ const Message = () => {
       return newRequest.post(`/messages`, message);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(["messages"]);
+      queryClient.invalidateQueries(["messages", id]);
     },
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const message = e.target[0].value.trim();
+
+    if (!message) return;
+
     mutation.mutate({
       conversationId: id,
-      desc: e.target[0].value,
+      desc: message,
     });
+
     e.target[0].value = "";
   };
 
   return (
     <div className="message">
       <div className="container">
-        <span className="breadcrumbs">
-          <Link to="/messages">Messages</Link> > John Doe >
-        </span>
+        <div className="chat-header">
+          <span className="breadcrumbs">
+            <Link to="/messages">Mensagens</Link> &gt; Conversa
+          </span>
+
+          <div>
+            <span>Biscato.Mz</span>
+            <h1>Conversa do Biscato</h1>
+            <p>
+              Converse com o cliente ou profissional para combinar detalhes,
+              prazos e próximos passos.
+            </p>
+          </div>
+        </div>
+
         {isLoading ? (
-          "loading"
+          <div className="state-box">A carregar mensagens...</div>
         ) : error ? (
-          "error"
+          <div className="state-box error">
+            <h3>Algo correu mal</h3>
+            <p>Não foi possível carregar esta conversa. Tente novamente.</p>
+          </div>
         ) : (
           <div className="messages">
-            {data.map((m) => (
-              <div className={m.userId === currentUser._id ? "owner item" : "item"} key={m._id}>
-                <img
-                  src="https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                  alt=""
-                />
-                <p>{m.desc}</p>
+            {data.length === 0 ? (
+              <div className="empty-chat">
+                <h3>Ainda não há mensagens</h3>
+                <p>Envie a primeira mensagem para iniciar a conversa.</p>
               </div>
-            ))}
+            ) : (
+              data.map((m) => (
+                <div
+                  className={
+                    m.userId === currentUser?._id ? "owner item" : "item"
+                  }
+                  key={m._id}
+                >
+                  <img
+                    src={
+                      m.userId === currentUser?._id
+                        ? currentUser?.img || "/img/noavatar.jpg"
+                        : "/img/noavatar.jpg"
+                    }
+                    alt="Utilizador"
+                  />
+
+                  <p>{m.desc}</p>
+                </div>
+              ))
+            )}
           </div>
         )}
-        <hr />
+
         <form className="write" onSubmit={handleSubmit}>
-          <textarea type="text" placeholder="write a message" />
-          <button type="submit">Send</button>
+          <textarea
+            type="text"
+            placeholder="Escreva a sua mensagem..."
+            disabled={mutation.isLoading}
+          />
+
+          <button type="submit" disabled={mutation.isLoading}>
+            {mutation.isLoading ? "A enviar..." : "Enviar"}
+          </button>
         </form>
       </div>
     </div>
